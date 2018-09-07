@@ -1,0 +1,36 @@
+-- Include more info about where I'm connected in the command prompt
+\set PROMPT1 '%[%033[33m%]%x%[%033[1;36m%]%M%[%033[0m%].%[%033[32m%]%/%[%033[0m%]%R%# '
+
+-- Clearly indicate that I'm continuing a query (like if I forget a semicolon or something'
+\set PROMPT2 '[more] %R > '
+
+-- Format the results of queries with the fields horizontally or vertically automatically depending on how wide they are
+\x auto
+
+-- Store history from different dbs in different files
+\set HISTFILE ~/.psql_history-:HOST-:DBNAME
+
+-- Keep more commands in history
+\set HISTSIZE 2000
+
+-- Show the amount of time each query took
+\timing
+
+-- Give the most detail in error messages
+\set VERBOSITY verbose
+
+-- Display NULLs as these wacky characters rather than just blank
+\pset null '¤'
+--\pset null 'Ø'
+
+-- Make the grid lines fancier
+\pset linestyle 'unicode'
+\pset unicode_border_linestyle single
+\pset unicode_column_linestyle single
+\pset unicode_header_linestyle double
+
+-- Display intervals in a more human-readable way (https://www.postgresql.org/docs/9.4/static/datatype-datetime.html#INTERVAL-STYLE-OUTPUT-TABLE)
+set intervalstyle to 'postgres_verbose';
+
+-- If there's more info than fits on the screen, display it with this pager program (the default is the program 'more'; I personally like 'less' better
+\setenv LESS '-iMFXSx4R'
